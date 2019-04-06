@@ -22,7 +22,7 @@ namespace JWGL.DAL
 		/// </summary>
 		/// <param name="newTermCourse"></param>
 		/// <returns></returns>
-		public bool AddNewTermCourse(TermCourse newTermCourse)
+		public bool Add(TermCourse newTermCourse)
 		{
 			for(int i = 0;i<termCourses.Count;i++)
 			{
@@ -39,7 +39,7 @@ namespace JWGL.DAL
 		/// </summary>
 		/// <param name="ID"></param>
 		/// <returns></returns>
-		public bool RemoveTermCourse(string ID)
+		public bool Remove(string ID)
 		{
 			for(int i=0;i<termCourses.Count;i++)
 			{
@@ -57,7 +57,7 @@ namespace JWGL.DAL
 		/// </summary>
 		/// <param name="ID"></param>
 		/// <returns></returns>
-		public TermCourse RetrieveTermCourse(string ID)
+		public TermCourse Retrieve(string ID)
 		{
 			for(int i=0;i<termCourses.Count;i++)
 			{

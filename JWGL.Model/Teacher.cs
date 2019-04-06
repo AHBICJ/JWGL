@@ -10,11 +10,17 @@ namespace JWGL.Model
     public class Teacher:Person
     {
         static int teacherID = 1;
+        static int currentYear = 2010;
         public Teacher(string name, string password) : base(name, password) { }
 
         public override string GetNewID()
         {
-            return string.Format("T2010{0:000}", teacherID++);
+            if (DateTime.Today.Year > currentYear)
+            {
+                currentYear = DateTime.Today.Year;
+                teacherID = 1;
+            }
+            return string.Format("T{0}{1:000}", currentYear,teacherID++);
         }
 
         public override UserType GetUserType()

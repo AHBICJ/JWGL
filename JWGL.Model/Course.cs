@@ -9,27 +9,28 @@ namespace JWGL.Model
     [Serializable]
     public class Course
     {
-        string courseID;
-        string courseName;
-        double couresePoint;
-        public Course(string courseID,string courseName,double couresePoint)
+        string id;
+        string name;
+        double point;
+        public Course(string id,string name,double point)
         {
-            this.courseID = courseID;
-            this.courseName = courseName;
-            this.couresePoint = couresePoint;
+            this.id = id;
+            this.name = name;
+            this.point = point;
         }
-        public string CourseID
+        public string ID
         {
-            get => courseID;
+            get => id;
         }
-        public string CourseName
+        public string Name
         {
-            get => courseName;
+            get => name;
         }
 
-        public double CoursePoint
+        public double Point
         {
-            get => couresePoint;
+            get => point;
+            set => point = value;
         }
     }
 }

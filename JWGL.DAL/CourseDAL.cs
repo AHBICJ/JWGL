@@ -22,11 +22,11 @@ namespace JWGL.DAL
 		/// </summary>
 		/// <param name="newCourse"></param>
 		/// <returns></returns>
-		public bool AddNewCourse(Course course)
+		public bool Add(Course course)
 		{
 			for(int i=0;i<courses.Count;i++)
 			{
-                if (course.CourseID == courses[i].CourseID)
+                if (course.ID == courses[i].ID)
 				{
 					return false;
 				}
@@ -41,11 +41,11 @@ namespace JWGL.DAL
 		/// </summary>
 		/// <param name="courseID"></param>
 		/// <returns></returns>
-		public Course RetrieveCourse(string courseID)
+		public Course Retrieve(string courseID)
 		{
 			for(int i=0;i<courses.Count;i++)
 			{
-                if (courseID == courses[i].CourseID)
+                if (courseID == courses[i].ID)
 				{
 					return courses[i];
 				}
@@ -68,11 +68,11 @@ namespace JWGL.DAL
 		/// </summary>
 		/// <param name="ID"></param>
 		/// <returns></returns>
-		public bool RemoveCourse(string courseID)
+		public bool Remove(string courseID)
 		{
 			for(int i=0;i<courses.Count;i++)
 			{
-                if (courseID == courses[i].CourseID)
+                if (courseID == courses[i].ID)
 				{
 					courses.RemoveAt(i);
 					return true;

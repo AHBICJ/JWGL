@@ -12,7 +12,7 @@ namespace JWGL.BLL
     {
         public static TermCourse RetrieveTermCourse(string termCourseId)
         {
-            return termCourses.RetrieveTermCourse(termCourseId);
+            return termCourses.Retrieve(termCourseId);
         }
 
         public static TermCourse[] GetAllTermCourse()
@@ -22,9 +22,9 @@ namespace JWGL.BLL
 
         public static string GetCourseDetail(TermCourse tm)
         {
-            Course c = courses.RetrieveCourse(tm.CourseID);
+            Course c = courses.Retrieve(tm.CourseID);
             Person t = teachers.Retrieve(tm.TeacherID);
-            return string.Format(c.CourseName + t.Name);
+            return string.Format(c.Name + t.Name);
         }
     }
 }

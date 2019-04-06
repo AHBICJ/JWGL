@@ -109,17 +109,189 @@ namespace JWGL
             return Console.ReadLine();
         }
 
+        #region TermCourse UI
+        private static void AddTermCourseUI()
+        {
+            string cid = ReadLineWithTip("请输入课程ID：");
+            string tid = ReadLineWithTip("请输入教师ID：");
+            string err ="";
+            AdminBLL.AddTermCourse(cid, tid, out err);
+            if (err!="") Console.WriteLine(err);
+        }
+
+        private static void RemoveTermCourseUI()
+        {
+            string id = ReadLineWithTip("请输入要删除学期课程的ID：");
+            if (AdminBLL.isExistedTermCourse(id))
+            {
+                string confirm = ReadLineWithTip("确认要删除该学期课程吗？(Y/N)");
+                if (confirm[0] == 'y' || confirm[0] == 'Y')
+                    Console.WriteLine(AdminBLL.RemoveTermCourse(id) ? "操作成功" : ">>>> 操作失败：未知原因");
+                else
+                    Console.WriteLine("操作已经取消");
+            }
+            else
+            {
+                Console.WriteLine(">>>> 错误提示： 指定的学期课程不存在！");
+            }
+        }
+
+        private static void ModifyTermCourseUI()
+        {
+            string id = ReadLineWithTip("请输入要修改学期课程的ID：");
+            if (AdminBLL.isExistedTermCourse(id))
+            {
+                string newtid = ReadLineWithTip("请输入新的任课老师ID:");
+                string err;
+                AdminBLL.ModifyTermCourse(id, newtid,out err);
+                if (err != "") Console.WriteLine(err);
+            }
+            else
+            {
+                Console.WriteLine(">>>> 错误提示： 指定的学期课程不存在！");
+            }
+        }
+
+        private static void QueryTermCourseUI()
+        {
+            string tid = ReadLineWithTip("请输入要查询学期课程的ID(否则显示所有课程信息)：");
+            Console.WriteLine("ID  课程   任课老师");
+            string t = AdminBLL.QueryTermCourse(tid);
+            if (t=="")
+            {
+                if (tid != "") Console.WriteLine("查无此课，输入所有学期课程信息");
+                string[] termCourse = AdminBLL.QueryTermCourse();
+                foreach (string str in termCourse) Console.WriteLine(str);
+            }
+            else
+                Console.WriteLine(t);
+        }
+
         private static void TCMA()
         {
-            Show(Type.TCMA);
-            return;
+            while (true)
+            {
+                Show(Type.TCMA);
+                string input = Console.ReadLine();
+                Console.Clear();
+                try
+                {
+                    switch (input[0])
+                    {
+                        case '0': return;
+                        case '1': AddTermCourseUI(); break;
+                        case '2': RemoveTermCourseUI(); break;
+                        case '3': ModifyTermCourseUI(); break;
+                        case '4': QueryTermCourseUI(); break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("出现错误");
+                }
+            }
+        }
+        #endregion
+
+        #region Course UI
+        private static void AddCourseUI()
+        {
+            string id = ReadLineWithTip("请输入课程编号：");
+            string name = ReadLineWithTip("请输入课程名称：");
+            double point;
+            try
+            {
+                point = double.Parse(ReadLineWithTip("请输入课程学分："));
+                AdminBLL.AddCourse(id, name, point);
+            }
+            catch
+            {
+                Console.WriteLine(">>>> 错误提示： 学分输入错误！");
+            }
+        }
+
+        private static void RemoveCourseUI()
+        {
+            string id = ReadLineWithTip("请输入要删除的课程ID：");
+            if (AdminBLL.isExistedCourse(id))
+            {
+                string confirm = ReadLineWithTip("确认要删除该课程吗？(Y/N)");
+                if (confirm[0] == 'y' || confirm[0] == 'Y')
+                    Console.WriteLine(AdminBLL.RemoveCourse(id) ? "操作成功" : ">>>> 操作失败：未知原因");
+                else
+                    Console.WriteLine("操作已经取消");
+            }
+            else
+            {
+                Console.WriteLine(">>>> 错误提示： 指定的学期课程不存在！");
+            }
+        }
+
+        private static void ModifyCourseUI()
+        {
+            string id = ReadLineWithTip("请输入要修改课程的ID：");
+            if (AdminBLL.isExistedCourse(id))
+            {
+                double point;
+                try
+                {
+                    point = double.Parse(ReadLineWithTip("修改课程学分为:"));
+                    AdminBLL.ModifyCourse(id, point);
+                }
+                catch
+                {
+                    Console.WriteLine(">>>> 错误提示： 学分输入错误！");
+                }
+            }
+            else
+            {
+                Console.WriteLine(">>>> 错误提示： 指定的学期课程不存在！");
+            }
+        }
+
+        private static void QueryCourseUI()
+        {
+            string cid = ReadLineWithTip("请输入要查询的课程ID(否则显示所有课程信息)：");
+            Console.WriteLine("ID  课程名   学分");
+            Course cc = AdminBLL.QueryCourse(cid);
+            if (cc == null)
+            {
+                if (cid != "") Console.WriteLine("查无此课，输出所有课程信息");
+                Course[] courses = AdminBLL.QueryCourse();
+                foreach (Course c in courses)
+                {
+                    Console.WriteLine(c.ID + " " + c.Name+ " "+c.Point);
+                }
+            }
+            else
+                Console.WriteLine(cc.ID + " " + cc.Name + " " + cc.Point);
         }
 
         private static void CMA()
         {
-            Show(Type.CMA);
-            return;
+            while (true)
+            {
+                Show(Type.CMA);
+                string input = Console.ReadLine();
+                Console.Clear();
+                try
+                {
+                    switch (input[0])
+                    {
+                        case '0': return;
+                        case '1': AddCourseUI(); break;
+                        case '2': RemoveCourseUI(); break;
+                        case '3': ModifyCourseUI(); break;
+                        case '4': QueryCourseUI(); break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("出现错误");
+                }
+            }
         }
+        #endregion
 
         #region Student UI
         private static void AddStudentUI()
@@ -162,25 +334,19 @@ namespace JWGL
 
         private static void QueryStudentUI()
         {
-            string tid = ReadLineWithTip("******** 查询学生记录 ***********\n请输入要查询的学生ID(否则显示所有学生信息)：");
+            string tid = ReadLineWithTip("请输入要查询的学生ID(否则显示所有学生信息)：");
             Console.WriteLine("ID  姓名");
-            if (tid == "")
-            {
+            Person s = AdminBLL.QueryStudent(tid);
+            if (s==null){
+                if (tid!=null) Console.WriteLine("查无此人，输入所有结果：");
                 Person[] students = AdminBLL.QueryStudent();
                 foreach (Person p in students)
                 {
                     Console.WriteLine(p.ID + " " + p.Name);
                 }
             }
-            else 
-            {
-                Person t = AdminBLL.QueryStudent(tid);
-                if (t == null)
-                {
-                    Console.WriteLine("查无此人");
-                }
-                else Console.WriteLine(t.ID + " " + t.Name);
-            }
+            else
+                Console.WriteLine(s.ID + " " + s.Name);
         }
 
         private static void SMA()
@@ -189,6 +355,7 @@ namespace JWGL
             {
                 Show(Type.SMA);
                 string input = Console.ReadLine();
+                Console.Clear();
                 try
                 {
                     switch (input[0])
@@ -204,9 +371,7 @@ namespace JWGL
                 {
                     Console.WriteLine("出现错误");
                 }
-                
             }
-
         }
         #endregion
 
@@ -252,23 +417,16 @@ namespace JWGL
 
         private static void QueryTeacherUI()
         {
-            string tid = ReadLineWithTip("******** 查询教师记录 ***********\n请输入要查询的教师ID(否则显示所有教师信息)：");
+            string tid = ReadLineWithTip("请输入要查询的教师ID(否则显示所有教师信息)：");
             Console.WriteLine("ID  姓名");
-            // 查询所有老师信息
-            if (tid == "")
-            {
+            Person t = AdminBLL.QueryTeacher(tid);
+            if (t == null) {
+                if (tid != "") Console.WriteLine("查无此人，输入所有结果：");
                 Person[] teachers = AdminBLL.QueryTeacher();
                 foreach (Person p in teachers) Console.WriteLine(p.ID + " " + p.Name);
             }
-            else // 查询单个老师信息
-            {
-                Person t = AdminBLL.QueryTeacher(tid);
-                if (t == null)
-                {
-                    Console.WriteLine("查无此人");
-                }
-                else Console.WriteLine(t.ID + " " + t.Name);
-            }
+            else
+                Console.WriteLine(t.ID + " " + t.Name);
         }
 
         /// <summary>
