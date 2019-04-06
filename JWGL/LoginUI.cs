@@ -7,11 +7,10 @@ using JWGL.BLL;
 using JWGL.Model;
 namespace JWGL
 {
+    enum ReturnType { RELOGIN, EXIT, ERROR }
     class LoginUI
     {
-        
-
-        internal static void Login()
+        internal static ReturnType Login()
         {
             Console.WriteLine(@"
 ╔══════════════════════════════════════╗
@@ -27,21 +26,27 @@ namespace JWGL
             Console.Write("请输入的你密码:");
             string pass = Console.ReadLine();
             string err;
-            bool result = LoginBLL.Login(id, pass,out err);
-            if (result)
+            if (LoginBLL.Login(id, pass, out err))
             {
                 Welcome();
-                if (BaseBLL.User.GetUserType() == UserType.Admin) AdminUI.GetCmd();
+                switch (BaseBLL.User.GetUserType())
+                {
+                    case UserType.Admin: return AdminUI.GetCmd();
+                    case UserType.Teacher: return TeacherUI.GetCmd();
+                    case UserType.Student: return StudentUI.GetCmd();
+                }
             }
             else
             {
                 Console.WriteLine(err);
+                return ReturnType.ERROR;
             }
+            return ReturnType.EXIT;
         }
 
-        internal static void logout()
+        internal static void Logout()
         {
-            throw new NotImplementedException();
+            BaseBLL.SaveAll();
         }
 
         internal static void Welcome()

@@ -12,8 +12,11 @@ namespace JWGL
     {
         static void Main(string[] args)
         {
-            LoginUI.Login();
-            LoginUI.logout();
+            while (LoginUI.Login() == ReturnType.RELOGIN)
+            {
+                LoginUI.Logout();
+            }
+            LoginUI.Logout();
         }
     }
 }

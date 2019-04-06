@@ -13,19 +13,11 @@ namespace JWGL.BLL
 
         public static void InitData()
         {
-            Student s1 = new Student("huangyu", "123");
-            Student s2 = new Student("zhuqingqing", "123");
-
-            Course c1 = new Course("C001", "面对对象程序设计", 4);
-            Course c2 = new Course("C002", "数据库基础", 3);
+            
             TermCourse tm1 = new TermCourse("C001", "T2010901");
             TermCourse tm2 = new TermCourse("C001", "T2010902");
             TermCourse tm3 = new TermCourse("C002", "T2010902");
             
-            students.Add(s1);
-            students.Add(s2);
-            courses.AddNewCourse(c1);
-            courses.AddNewCourse(c2);
             termCourses.AddNewTermCourse(tm1);
             termCourses.AddNewTermCourse(tm2);
             termCourses.AddNewTermCourse(tm3);
@@ -41,9 +33,9 @@ namespace JWGL.BLL
         {
             return teachers.Remove(id);
         }
-        public static void ModifyTeacher(string id,string pass)
+        public static bool ModifyTeacher(string id,string pass)
         {
-            teachers.ChangPW(id, pass);
+            return teachers.ChangPW(id, pass);
         }
 
         public static Person[] QueryTeacher()
@@ -78,21 +70,23 @@ namespace JWGL.BLL
             return students.Remove(id);
         }
 
-        public static void ModStudent()
+        public static bool ModifyStudent(string id,string pass)
         {
-            throw new NotImplementedException();
+            return students.ChangPW(id, pass);
         }
 
         public static Person[] QueryStudent()
         {
-            throw new NotImplementedException();
+            return students.RetrieveAll();
         }
 
         public static Person QueryStudent(string tid)
         {
-            throw new NotImplementedException();
+            return students.Retrieve(tid);
         }
 
         #endregion
+
+
     }
 }

@@ -31,11 +31,6 @@ namespace JWGL.BLL
 			get{return user;}
 		}
 
-		public static TermCourse RetrieveTermCourse(string termCourseId)
-		{
-			return termCourses.RetrieveTermCourse(termCourseId);
-		}
-
         public static void SaveAll()
         {
             DataFileAccess.SaveAdmins(admins);

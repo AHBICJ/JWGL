@@ -10,6 +10,11 @@ namespace JWGL.BLL
 {
     public class TermCourseBLL:BaseBLL
     {
+        public static TermCourse RetrieveTermCourse(string termCourseId)
+        {
+            return termCourses.RetrieveTermCourse(termCourseId);
+        }
+
         public static TermCourse[] GetAllTermCourse()
         {
             return termCourses.RetrieveAll();
