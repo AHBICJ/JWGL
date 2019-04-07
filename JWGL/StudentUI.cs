@@ -46,5 +46,10 @@ namespace JWGL
                 string info = TermCourseBLL.GetCourseDetail(tm);
             }
         }
+
+        internal static ReturnType GetCmd()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

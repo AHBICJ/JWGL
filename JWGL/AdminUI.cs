@@ -103,17 +103,11 @@ namespace JWGL
             }
         }
 
-        private static string ReadLineWithTip(string tip)
-        {
-            Console.Write(tip);
-            return Console.ReadLine();
-        }
-
         #region TermCourse UI
         private static void AddTermCourseUI()
         {
-            string cid = ReadLineWithTip("请输入课程ID：");
-            string tid = ReadLineWithTip("请输入教师ID：");
+            string cid = Tool.ReadLineWithTip("请输入课程ID：");
+            string tid = Tool.ReadLineWithTip("请输入教师ID：");
             string err ="";
             AdminBLL.AddTermCourse(cid, tid, out err);
             if (err!="") Console.WriteLine(err);
@@ -121,10 +115,10 @@ namespace JWGL
 
         private static void RemoveTermCourseUI()
         {
-            string id = ReadLineWithTip("请输入要删除学期课程的ID：");
+            string id = Tool.ReadLineWithTip("请输入要删除学期课程的ID：");
             if (AdminBLL.isExistedTermCourse(id))
             {
-                string confirm = ReadLineWithTip("确认要删除该学期课程吗？(Y/N)");
+                string confirm = Tool.ReadLineWithTip("确认要删除该学期课程吗？(Y/N)");
                 if (confirm[0] == 'y' || confirm[0] == 'Y')
                     Console.WriteLine(AdminBLL.RemoveTermCourse(id) ? "操作成功" : ">>>> 操作失败：未知原因");
                 else
@@ -138,10 +132,10 @@ namespace JWGL
 
         private static void ModifyTermCourseUI()
         {
-            string id = ReadLineWithTip("请输入要修改学期课程的ID：");
+            string id = Tool.ReadLineWithTip("请输入要修改学期课程的ID：");
             if (AdminBLL.isExistedTermCourse(id))
             {
-                string newtid = ReadLineWithTip("请输入新的任课老师ID:");
+                string newtid = Tool.ReadLineWithTip("请输入新的任课老师ID:");
                 string err;
                 AdminBLL.ModifyTermCourse(id, newtid,out err);
                 if (err != "") Console.WriteLine(err);
@@ -154,7 +148,7 @@ namespace JWGL
 
         private static void QueryTermCourseUI()
         {
-            string tid = ReadLineWithTip("请输入要查询学期课程的ID(否则显示所有课程信息)：");
+            string tid = Tool.ReadLineWithTip("请输入要查询学期课程的ID(否则显示所有课程信息)：");
             Console.WriteLine("ID  课程   任课老师");
             string t = AdminBLL.QueryTermCourse(tid);
             if (t=="")
@@ -196,12 +190,12 @@ namespace JWGL
         #region Course UI
         private static void AddCourseUI()
         {
-            string id = ReadLineWithTip("请输入课程编号：");
-            string name = ReadLineWithTip("请输入课程名称：");
+            string id = Tool.ReadLineWithTip("请输入课程编号：");
+            string name = Tool.ReadLineWithTip("请输入课程名称：");
             double point;
             try
             {
-                point = double.Parse(ReadLineWithTip("请输入课程学分："));
+                point = double.Parse(Tool.ReadLineWithTip("请输入课程学分："));
                 AdminBLL.AddCourse(id, name, point);
             }
             catch
@@ -212,10 +206,10 @@ namespace JWGL
 
         private static void RemoveCourseUI()
         {
-            string id = ReadLineWithTip("请输入要删除的课程ID：");
+            string id = Tool.ReadLineWithTip("请输入要删除的课程ID：");
             if (AdminBLL.isExistedCourse(id))
             {
-                string confirm = ReadLineWithTip("确认要删除该课程吗？(Y/N)");
+                string confirm = Tool.ReadLineWithTip("确认要删除该课程吗？(Y/N)");
                 if (confirm[0] == 'y' || confirm[0] == 'Y')
                     Console.WriteLine(AdminBLL.RemoveCourse(id) ? "操作成功" : ">>>> 操作失败：未知原因");
                 else
@@ -229,13 +223,13 @@ namespace JWGL
 
         private static void ModifyCourseUI()
         {
-            string id = ReadLineWithTip("请输入要修改课程的ID：");
+            string id = Tool.ReadLineWithTip("请输入要修改课程的ID：");
             if (AdminBLL.isExistedCourse(id))
             {
                 double point;
                 try
                 {
-                    point = double.Parse(ReadLineWithTip("修改课程学分为:"));
+                    point = double.Parse(Tool.ReadLineWithTip("修改课程学分为:"));
                     AdminBLL.ModifyCourse(id, point);
                 }
                 catch
@@ -251,7 +245,7 @@ namespace JWGL
 
         private static void QueryCourseUI()
         {
-            string cid = ReadLineWithTip("请输入要查询的课程ID(否则显示所有课程信息)：");
+            string cid = Tool.ReadLineWithTip("请输入要查询的课程ID(否则显示所有课程信息)：");
             Console.WriteLine("ID  课程名   学分");
             Course cc = AdminBLL.QueryCourse(cid);
             if (cc == null)
@@ -296,17 +290,17 @@ namespace JWGL
         #region Student UI
         private static void AddStudentUI()
         {
-            string name = ReadLineWithTip("请输入学生姓名：");
-            string pass = ReadLineWithTip("请输入学生密码：");
+            string name = Tool.ReadLineWithTip("请输入学生姓名：");
+            string pass = Tool.ReadLineWithTip("请输入学生密码：");
             AdminBLL.AddStudent(name, pass);
         }
 
         private static void RemoveStudentUI()
         {
-            string id = ReadLineWithTip("请输入要删除的学生ID：");
+            string id = Tool.ReadLineWithTip("请输入要删除的学生ID：");
             if (AdminBLL.isExistedStudent(id))
             {
-                string confirm = ReadLineWithTip("确认要删除该学生吗？(Y/N)");
+                string confirm = Tool.ReadLineWithTip("确认要删除该学生吗？(Y/N)");
                 if (confirm[0] == 'y' || confirm[0] == 'Y')
                     Console.WriteLine(AdminBLL.RemoveStudent(id) ? "操作成功" : ">>>> 操作失败：未知原因");
                 else
@@ -320,10 +314,10 @@ namespace JWGL
 
         private static void ModifyStudentUI()
         {
-            string id = ReadLineWithTip("请输入要修改的学生ID：");
+            string id = Tool.ReadLineWithTip("请输入要修改的学生ID：");
             if (AdminBLL.isExistedStudent(id))
             {
-                string pass = ReadLineWithTip("请输入新密码:");
+                string pass = Tool.ReadLineWithTip("请输入新密码:");
                 AdminBLL.ModifyStudent(id, pass);
             }
             else
@@ -334,7 +328,7 @@ namespace JWGL
 
         private static void QueryStudentUI()
         {
-            string tid = ReadLineWithTip("请输入要查询的学生ID(否则显示所有学生信息)：");
+            string tid = Tool.ReadLineWithTip("请输入要查询的学生ID(否则显示所有学生信息)：");
             Console.WriteLine("ID  姓名");
             Person s = AdminBLL.QueryStudent(tid);
             if (s==null){
@@ -379,17 +373,17 @@ namespace JWGL
 
         private static void AddTeacherUI()
         {
-            string name = ReadLineWithTip("请输入教师姓名：");
-            string pass = ReadLineWithTip("请输入教师密码：");
+            string name = Tool.ReadLineWithTip("请输入教师姓名：");
+            string pass = Tool.ReadLineWithTip("请输入教师密码：");
             AdminBLL.AddTeacher(name, pass);
         }
 
         private static void RemoveTeacherUI()
         {
-            string id = ReadLineWithTip("请输入要删除的教师ID：");
+            string id = Tool.ReadLineWithTip("请输入要删除的教师ID：");
             if (AdminBLL.isExistedTeacher(id))
             {
-                string confirm = ReadLineWithTip("确认要删除该教师吗？(Y/N)");
+                string confirm = Tool.ReadLineWithTip("确认要删除该教师吗？(Y/N)");
                 if (confirm[0] == 'y' || confirm[0] == 'Y')
                     Console.WriteLine(AdminBLL.RemoveTeacher(id) ? "操作成功" : ">>>> 操作失败：未知原因");
                 else
@@ -403,10 +397,10 @@ namespace JWGL
 
         private static void ModifyTeacherUI()
         {
-            string id = ReadLineWithTip("请输入要修改的教师ID：");
+            string id = Tool.ReadLineWithTip("请输入要修改的教师ID：");
             if (AdminBLL.isExistedTeacher(id))
             {
-                string pass = ReadLineWithTip("请输入新密码:");
+                string pass = Tool.ReadLineWithTip("请输入新密码:");
                 AdminBLL.ModifyTeacher(id,pass);
             }
             else
@@ -417,7 +411,7 @@ namespace JWGL
 
         private static void QueryTeacherUI()
         {
-            string tid = ReadLineWithTip("请输入要查询的教师ID(否则显示所有教师信息)：");
+            string tid = Tool.ReadLineWithTip("请输入要查询的教师ID(否则显示所有教师信息)：");
             Console.WriteLine("ID  姓名");
             Person t = AdminBLL.QueryTeacher(tid);
             if (t == null) {

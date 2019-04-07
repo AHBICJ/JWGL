@@ -8,5 +8,9 @@ namespace JWGL
 {
     class TeacherUI
     {
+        internal static ReturnType GetCmd()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

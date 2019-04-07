@@ -7,6 +7,14 @@ using JWGL.BLL;
 using JWGL.Model;
 namespace JWGL
 {
+    internal class Tool
+    {
+        internal static string ReadLineWithTip(string tip)
+        {
+            Console.Write(tip);
+            return Console.ReadLine();
+        }
+    }
     enum ReturnType { RELOGIN, EXIT, ERROR }
     class LoginUI
     {
@@ -21,10 +29,8 @@ namespace JWGL
 ║╚════════════════════════════════════╝║
 ╚══════════════════════════════════════╝
 ");
-            Console.Write("请输入的你ID:");
-            string id = Console.ReadLine();
-            Console.Write("请输入的你密码:");
-            string pass = Console.ReadLine();
+            string id = Tool.ReadLineWithTip("请输入的你ID:");
+            string pass = Tool.ReadLineWithTip("请输入的你密码:");
             string err;
             if (LoginBLL.Login(id, pass, out err))
             {
