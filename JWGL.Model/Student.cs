@@ -59,19 +59,24 @@ namespace JWGL.Model
     public class CourseAndMark
     {
         string courseID;
+        string teacherID;
         double mark;
-        public CourseAndMark(string courseID)
+        public CourseAndMark(string courseID,string teacherID)
         {
             this.courseID = courseID;
             this.mark = -1;
         }
-        public CourseAndMark(string coureseID,double mark) : this(coureseID)
+        public CourseAndMark(string coureseID,string teacherID, double mark) : this(coureseID, teacherID)
         {
            this.mark = mark;
         }
         public string CourseID
         {
             get => courseID;
+        }
+        public string TeacherID
+        {
+            get => teacherID;
         }
         public double Mark
         {
