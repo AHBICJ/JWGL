@@ -128,6 +128,7 @@ namespace JWGL.BLL
         }
         public static bool RemoveTeacher(string id)
         {
+            if (termCourses.TeachCourses(id).Length != 0) return false;
             return teachers.Remove(id);
         }
         public static bool ModifyTeacher(string id,string pass)

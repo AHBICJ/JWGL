@@ -10,9 +10,9 @@ namespace JWGL
 {
     class AdminUI
     {
-        internal enum Type {MAIN,TMA,SMA,CMA,TCMA}
+        protected enum Type {MAIN,TMA,SMA,CMA,TCMA}
         #region Menu UI
-        internal static void Show(Type t)
+        protected static void Show(Type t)
         {
             switch (t)
             {
@@ -74,7 +74,7 @@ namespace JWGL
         }
         #endregion
 
-        internal static ReturnType GetCmd()
+        internal static ReturnType AdminMain()
         {
             while (true)
             {
@@ -154,8 +154,8 @@ namespace JWGL
             if (t=="")
             {
                 if (tid != "") Console.WriteLine("查无此课，输入所有学期课程信息");
-                string[] termCourse = AdminBLL.QueryTermCourse();
-                foreach (string str in termCourse) Console.WriteLine(str);
+                        string[] termCourse = AdminBLL.QueryTermCourse();
+                        foreach (string str in termCourse) Console.WriteLine(str);
             }
             else
                 Console.WriteLine(t);
@@ -385,7 +385,7 @@ namespace JWGL
             {
                 string confirm = Tool.ReadLineWithTip("确认要删除该教师吗？(Y/N)");
                 if (confirm[0] == 'y' || confirm[0] == 'Y')
-                    Console.WriteLine(AdminBLL.RemoveTeacher(id) ? "操作成功" : ">>>> 操作失败：未知原因");
+                    Console.WriteLine(AdminBLL.RemoveTeacher(id) ? "操作成功" : ">>>> 操作失败：有学期课程依赖于此老师");
                 else
                     Console.WriteLine("操作已经取消");
             }

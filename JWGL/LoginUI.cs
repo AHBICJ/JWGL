@@ -29,30 +29,37 @@ namespace JWGL
 ║╚════════════════════════════════════╝║
 ╚══════════════════════════════════════╝
 ");
-            string id = Tool.ReadLineWithTip("请输入的你ID:");
-            string pass = Tool.ReadLineWithTip("请输入的你密码:");
-            string err;
-            if (LoginBLL.Login(id, pass, out err))
+            int cnt = 3;
+            while (cnt!=0)
             {
-                Welcome();
-                switch (BaseBLL.User.GetUserType())
+                string id = Tool.ReadLineWithTip("请输入的你ID:");
+                string pass = Tool.ReadLineWithTip("请输入的你密码:");
+                string err;
+                if (LoginBLL.Login(id, pass, out err))
                 {
-                    case UserType.Admin: return AdminUI.GetCmd();
-                    case UserType.Teacher: return TeacherUI.GetCmd();
-                    case UserType.Student: return StudentUI.GetCmd();
+                    Welcome();
+                    switch (BaseBLL.User.GetUserType())
+                    {
+                        case UserType.Admin: return AdminUI.AdminMain();
+                        case UserType.Teacher: return TeacherUI.GetCmd();
+                        case UserType.Student: return StudentUI.StudentMain();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(err);
+                    cnt--;
                 }
             }
-            else
-            {
-                Console.WriteLine(err);
-                return ReturnType.ERROR;
-            }
-            return ReturnType.EXIT;
+            Console.WriteLine(">>>>错误提示： 超过重试次数，系统已关闭！");
+            return ReturnType.ERROR;
         }
 
         internal static void Logout()
         {
             BaseBLL.SaveAll();
+            Console.WriteLine(">>>>系统已关闭，按任意键退出");
+            Console.ReadKey();
         }
 
         internal static void Welcome()
