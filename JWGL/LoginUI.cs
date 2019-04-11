@@ -41,7 +41,7 @@ namespace JWGL
                     switch (BaseBLL.User.GetUserType())
                     {
                         case UserType.Admin: return AdminUI.AdminMain();
-                        case UserType.Teacher: return TeacherUI.GetCmd();
+                        case UserType.Teacher: return TeacherUI.TeacherMain();
                         case UserType.Student: return StudentUI.StudentMain();
                     }
                 }

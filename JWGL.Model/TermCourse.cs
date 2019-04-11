@@ -70,6 +70,10 @@ namespace JWGL.Model
         {
             return students.ToArray();
         }
+        public int GetStudentsNum()
+        {
+            return students.Count;
+        }
 
         public bool HasStudentByID(string studentID)
         {

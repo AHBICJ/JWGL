@@ -99,5 +99,10 @@ namespace JWGL.BLL
             }
             return res.ToArray();
         }
+
+        public static string GetName(string id)
+        {
+            return students.Retrieve(id)?.Name;
+        }
     }
 }
