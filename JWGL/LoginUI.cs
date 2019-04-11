@@ -58,8 +58,6 @@ namespace JWGL
         internal static void Logout()
         {
             BaseBLL.SaveAll();
-            Console.WriteLine(">>>>系统已关闭，按任意键退出");
-            Console.ReadKey();
         }
 
         internal static void Welcome()

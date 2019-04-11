@@ -17,6 +17,8 @@ namespace JWGL
                 LoginUI.Logout();
             }
             LoginUI.Logout();
+            Console.WriteLine(">>>>系统已关闭，按任意键退出");
+            Console.ReadKey();
         }
     }
 }

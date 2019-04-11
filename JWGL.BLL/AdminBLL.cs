@@ -95,6 +95,12 @@ namespace JWGL.BLL
         }
         public static bool RemoveCourse(string id)
         {
+            // 如果有termCourese 返回false
+            TermCourse[] tms = termCourses.RetrieveAll();
+            foreach(TermCourse tm in tms)
+            {
+                if (tm.CourseID == id) return false;
+            }
             return courses.Remove(id);
         }
         public static bool ModifyCourse(string id, double point)

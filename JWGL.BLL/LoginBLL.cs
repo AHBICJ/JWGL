@@ -13,6 +13,11 @@ namespace JWGL.BLL
         {
             err = "";
             Person p = null;
+            if (id == "" || pass=="")
+            {
+                err = "请输入账号和密码";
+                return false;
+            }
             switch ((id.ToUpper())[0])
             {
                 case 'A':

@@ -119,8 +119,10 @@ namespace JWGL
             if (AdminBLL.isExistedTermCourse(id))
             {
                 string confirm = Tool.ReadLineWithTip("确认要删除该学期课程吗？(Y/N)");
-                if (confirm[0] == 'y' || confirm[0] == 'Y')
+                if (confirm[0] == 'y' || confirm[0] == 'Y') { 
+                    StudentBLL.RemoveStudentCourse(id);
                     Console.WriteLine(AdminBLL.RemoveTermCourse(id) ? "操作成功" : ">>>> 操作失败：未知原因");
+                }
                 else
                     Console.WriteLine("操作已经取消");
             }
@@ -211,7 +213,7 @@ namespace JWGL
             {
                 string confirm = Tool.ReadLineWithTip("确认要删除该课程吗？(Y/N)");
                 if (confirm[0] == 'y' || confirm[0] == 'Y')
-                    Console.WriteLine(AdminBLL.RemoveCourse(id) ? "操作成功" : ">>>> 操作失败：未知原因");
+                    Console.WriteLine(AdminBLL.RemoveCourse(id) ? "操作成功" : ">>>> 存在该门课的学期课程，删除失败");
                 else
                     Console.WriteLine("操作已经取消");
             }
