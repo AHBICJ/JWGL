@@ -334,7 +334,7 @@ namespace JWGL
             Console.WriteLine("ID  姓名");
             Person s = AdminBLL.QueryStudent(tid);
             if (s==null){
-                if (tid!=null) Console.WriteLine("查无此人，输入所有结果：");
+                if (tid!="") Console.WriteLine("查无此人，输入所有结果：");
                 Person[] students = AdminBLL.QueryStudent();
                 foreach (Person p in students)
                 {
