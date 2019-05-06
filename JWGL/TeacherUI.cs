@@ -114,11 +114,13 @@ namespace JWGL
                         {
                             double g = double.Parse(grade);
                             if (!TeacherBLL.AssignOnce(cid, ids[i], g)) Console.WriteLine("该学生已有成绩");
+                            else Console.WriteLine("成绩录入成功！");
                         }
                         catch
                         {
                             Console.WriteLine("成绩输入错误");
                         }
+                        i++;
                     }
                 }
                 else if (confirm[0] == 'n' || confirm[0] == 'N')
@@ -129,6 +131,7 @@ namespace JWGL
                     {
                         double g = double.Parse(grade);
                         if (!TeacherBLL.AssignOnce(cid,id,g)) Console.WriteLine("学号输入错误,或该学生已有成绩");
+                        else Console.WriteLine("成绩录入成功输入错误");
                     }
                     catch
                     {

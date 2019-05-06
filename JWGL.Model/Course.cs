@@ -12,11 +12,13 @@ namespace JWGL.Model
         string id;
         string name;
         double point;
-        public Course(string id,string name,double point)
+        string preid;
+        public Course(string id,string name,double point,string preid = "")
         {
             this.id = id;
             this.name = name;
             this.point = point;
+            this.preid = preid;
         }
         public string ID
         {
@@ -31,6 +33,10 @@ namespace JWGL.Model
         {
             get => point;
             set => point = value;
+        }
+        public string PreId
+        {
+            get => preid;
         }
     }
 }

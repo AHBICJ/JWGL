@@ -9,7 +9,7 @@ namespace JWGL.Model
     [Serializable]
     public class Teacher:Person
     {
-        static int teacherID = 1;
+        public static int teacherID = 1;
         static int currentYear = 2010;
         public Teacher(string name, string password) : base(name, password) { }
 

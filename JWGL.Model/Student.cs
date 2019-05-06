@@ -9,7 +9,7 @@ namespace JWGL.Model
     [Serializable]
     public class Student:Person
     {
-        private static int SID = 136001;
+        public static int SID = 136001;
         List<CourseAndMark> courses;
         public Student(string name,string password) : base(name, password) {
             courses = new List<CourseAndMark>();

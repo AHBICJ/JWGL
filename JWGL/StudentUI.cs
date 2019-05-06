@@ -105,7 +105,7 @@ namespace JWGL
             PrintAllChosenCourseID();
             string s = Tool.ReadLineWithTip("请输入你要退选的课程编号：");
             if (StudentBLL.CheckHasChosenCourse(s)){
-                StudentBLL.RemoveCourse(s);
+                if (StudentBLL.RemoveCourse(s)) Console.WriteLine("退选成功");
             }
             else
             {
@@ -131,12 +131,11 @@ namespace JWGL
             }
             if (!StudentBLL.CheckHasChosenTermCourse(s))
             {
-                StudentBLL.AddTermCourse(s);
-                Console.WriteLine("成功选取该门课程！");
+                if (StudentBLL.AddTermCourse(s)) Console.WriteLine("成功选取该门课程！"); else Console.WriteLine("未满足先修课要求！");
             }
             else
             {
-                Console.WriteLine("已经选过同名的课程！");
+                Console.WriteLine("已经选过同名的课程");
             }
         }
 

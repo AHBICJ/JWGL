@@ -7,5 +7,7 @@ namespace JWGL.DAL
 	/// studentDAL 的摘要说明。
 	/// </summary>
 	[Serializable]
-	public class StudentDAL:BaseDAL	{}
+	public class StudentDAL:BaseDAL	{
+        public int SID;
+    }
 }

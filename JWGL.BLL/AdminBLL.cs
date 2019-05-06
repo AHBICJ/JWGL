@@ -89,9 +89,9 @@ namespace JWGL.BLL
         #endregion
 
         #region Course 
-        public static void AddCourse(string cid,string name,double point)
+        public static bool AddCourse(string cid,string name,double point,string preid)
         {
-            courses.Add(new Course(cid,name,point));
+            return courses.Add(new Course(cid,name,point,preid));
         }
         public static bool RemoveCourse(string id)
         {
@@ -159,9 +159,9 @@ namespace JWGL.BLL
         #endregion
 
         #region Student
-        public static void AddStudent(string name, string pass)
+        public static bool AddStudent(string name, string pass)
         {
-            students.Add(new Student(name, pass));
+            return students.Add(new Student(name, pass));
         }
 
         public static bool isExistedStudent(string id)
@@ -171,6 +171,16 @@ namespace JWGL.BLL
 
         public static bool RemoveStudent(string id)
         {
+            Student s = students.Retrieve(id) as Student;
+            CourseAndMark[] cms = s.GetCourseMarks();
+            foreach (CourseAndMark cm in cms)
+            {
+                if (cm.Mark!=-1)
+                {
+                    TermCourse tm = termCourses.Retrieve(cm.CourseID);
+                    tm.RemoveStudent(id);
+                }
+            }
             return students.Remove(id);
         }
 

@@ -47,10 +47,10 @@ namespace JWGL.BLL
             CourseAndMark[] cms = st.GetCourseMarks();
             foreach(CourseAndMark cm in cms)
             {
-                if (cm.CourseID == tc.CourseID && cm.Mark != -1)
+                if (cm.CourseID == tc.CourseID && cm.Mark == -1)
                 {
                     cm.Mark = g;
-                    return false;
+                    return true;
                 }
             }
             return false;

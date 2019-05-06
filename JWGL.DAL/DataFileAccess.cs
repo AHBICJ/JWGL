@@ -127,7 +127,9 @@ namespace JWGL.DAL
 			else
 			{
 				students = new StudentDAL();
-			}
+                students.SID = 196001;
+            }
+            Student.SID = students.SID;
 			return students;
 		}
 
@@ -137,6 +139,7 @@ namespace JWGL.DAL
 		/// <param name="students"></param>
 		public static void SaveStudents(StudentDAL students)
 		{
+            students.SID = Student.SID;
 			using(FileStream fs = new FileStream(studentsDocPath,FileMode.Create,FileAccess.Write))
 			{
 				BinaryFormatter bf = new BinaryFormatter();
@@ -165,10 +168,12 @@ namespace JWGL.DAL
 				{
 					BinaryFormatter bf = new BinaryFormatter();
 					teachers = new TeacherDAL();
-					bf.Serialize(fs,teachers);
+                    teachers.TID = 1;
+                    bf.Serialize(fs,teachers);
 				}
 			}
-			return teachers;
+            Teacher.teacherID = teachers.TID;
+            return teachers;
 		}
 
 		/// <summary>
@@ -177,7 +182,8 @@ namespace JWGL.DAL
 		/// <param name="teachers"></param>
 		public static void SaveTeachers(TeacherDAL teachers)
 		{
-			using(FileStream fs = new FileStream(teacherDocPath,FileMode.Create,FileAccess.Write))
+            teachers.TID = Teacher.teacherID;
+            using (FileStream fs = new FileStream(teacherDocPath,FileMode.Create,FileAccess.Write))
 			{
 				BinaryFormatter bf = new BinaryFormatter();
 				bf.Serialize(fs,teachers);

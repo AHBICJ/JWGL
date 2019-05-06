@@ -33,11 +33,30 @@ namespace JWGL.BLL
             return false;
         }
 
-        public static void AddTermCourse(string s)
+        public static bool AddTermCourse(string s)
         {
             Student stu = (Student)user;
             TermCourse tm = termCourses.Retrieve(s);
-            stu.AddCourse(new CourseAndMark(tm.CourseID, tm.TeacherID));
+            Course c = courses.Retrieve(tm.CourseID);
+            if (c.PreId != "")
+            {
+                foreach(CourseAndMark cm in stu.GetCourseMarks())
+                {
+                    if (cm.CourseID==c.PreId && cm.Mark != -1)
+                    {
+                        tm.AddStudent(stu);
+                        stu.AddCourse(new CourseAndMark(tm.CourseID, tm.TeacherID));
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                tm.AddStudent(stu);
+                stu.AddCourse(new CourseAndMark(tm.CourseID, tm.TeacherID));
+                return true;
+            }
+            return false;
         }
 
         public static string[] GetAllCourseID()
@@ -62,13 +81,13 @@ namespace JWGL.BLL
             }
             return "";
         }
-        public static void RemoveCourse(string s)
+        public static bool RemoveCourse(string s)
         {
             Student stu = (Student)user;
             string id = GetTermCourseIDByCourseID(s);
             TermCourse tm = termCourses.Retrieve(id);
             tm.RemoveStudent(stu.ID);
-            stu.RemoveCourse(s);
+            return stu.RemoveCourse(s);
         }
 
         public static void RemoveStudentCourse(string id)
