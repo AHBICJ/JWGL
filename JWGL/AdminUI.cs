@@ -198,6 +198,7 @@ namespace JWGL
             try
             {
                 point = double.Parse(Tool.ReadLineWithTip("请输入课程学分："));
+                // TODO 对于加入课程 这个先修课ID是否存在
                 if (AdminBLL.AddCourse(id, name, point,preid)) Console.WriteLine("添加课程成功！"); else Console.WriteLine("添加课程失败！");
             }
             catch
@@ -213,6 +214,7 @@ namespace JWGL
             {
                 string confirm = Tool.ReadLineWithTip("确认要删除该课程吗？(Y/N)");
                 if (confirm[0] == 'y' || confirm[0] == 'Y')
+                    // TODO 改成有out 的函数 需要判断这门课是否被依赖 增加字段，或者暴力搜索
                     Console.WriteLine(AdminBLL.RemoveCourse(id) ? "操作成功" : ">>>> 存在该门课的学期课程，删除失败");
                 else
                     Console.WriteLine("操作已经取消");
@@ -248,7 +250,7 @@ namespace JWGL
         private static void QueryCourseUI()
         {
             string cid = Tool.ReadLineWithTip("请输入要查询的课程ID(否则显示所有课程信息)：");
-            Console.WriteLine("ID  课程名   学分");
+            Console.WriteLine(string.Format("{0,-6}{1,-15}{2,-5}{3,-6}", "ID","课程名","学分","先修课编号"));
             Course cc = AdminBLL.QueryCourse(cid);
             if (cc == null)
             {
@@ -256,11 +258,11 @@ namespace JWGL
                 Course[] courses = AdminBLL.QueryCourse();
                 foreach (Course c in courses)
                 {
-                    Console.WriteLine(c.ID + " " + c.Name+ " "+c.Point);
+                    Console.WriteLine(c);
                 }
             }
             else
-                Console.WriteLine(cc.ID + " " + cc.Name + " " + cc.Point);
+                Console.WriteLine(cc);
         }
 
         private static void CMA()
@@ -377,7 +379,7 @@ namespace JWGL
         {
             string name = Tool.ReadLineWithTip("请输入教师姓名：");
             string pass = Tool.ReadLineWithTip("请输入教师密码：");
-            AdminBLL.AddTeacher(name, pass);
+            if (AdminBLL.AddTeacher(name, pass)) Console.WriteLine("教师添加成功！"); else Console.WriteLine("教师添加失败!");
         }
 
         private static void RemoveTeacherUI()

@@ -128,9 +128,9 @@ namespace JWGL.BLL
         #endregion
 
         #region Teacher 
-        public static void AddTeacher(string name,string pass)
+        public static bool AddTeacher(string name,string pass)
         {
-            teachers.Add(new Teacher(name, pass));
+            return teachers.Add(new Teacher(name, pass));
         }
         public static bool RemoveTeacher(string id)
         {

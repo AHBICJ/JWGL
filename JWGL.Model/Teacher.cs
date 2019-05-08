@@ -10,7 +10,7 @@ namespace JWGL.Model
     public class Teacher:Person
     {
         public static int teacherID = 1;
-        static int currentYear = 2010;
+        public static int currentYear = 2010;
         public Teacher(string name, string password) : base(name, password) { }
 
         public override string GetNewID()

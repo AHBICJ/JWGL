@@ -90,11 +90,13 @@ namespace JWGL
 
         private static void InfoUI()
         {
+            Show(Type.INFO);
             Console.WriteLine(StudentBLL.ShowInfo());
         }
 
         private static void QueryGradeUI()
         {
+            Show(Type.QUERY);
             string[] res = StudentBLL.QueryGrade();
             foreach (string str in res) Console.WriteLine(str);
         }

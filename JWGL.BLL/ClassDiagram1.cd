@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="JWGL.BLL.AdminBLL">
+    <Position X="3" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAACAAEwgAAoAAAgBAAEAAAAABAAACICQAECAgQ=</HashCode>
+      <FileName>AdminBLL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWGL.BLL.BaseBLL">
+    <Position X="5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAABAABAAAAAAAEAAAAAEAAAAAACAQI=</HashCode>
+      <FileName>BaseBLL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWGL.BLL.LoginBLL">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>LoginBLL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWGL.BLL.StudentBLL">
+    <Position X="8.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAiAAIIAAAAAAAAIBAAAAAAEAAIAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>StudentBLL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWGL.BLL.TeacherBLL">
+    <Position X="7" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAABAAAAAAIAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>TeacherBLL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWGL.BLL.TermCourseBLL">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAABAQAAAA=</HashCode>
+      <FileName>TermCourseBLL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

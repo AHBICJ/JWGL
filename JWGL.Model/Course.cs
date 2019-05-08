@@ -38,5 +38,9 @@ namespace JWGL.Model
         {
             get => preid;
         }
+        public override string ToString()
+        {
+            return string.Format("{0,-6}{1,-15}{2,-5}{3,-6}", id, name, point, preid);
+        }
     }
 }

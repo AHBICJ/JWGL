@@ -104,7 +104,7 @@ namespace JWGL.BLL
         public static String ShowInfo()
         {
             Student stu = (Student)user;
-            return stu.Name;
+            return "姓名：" +stu.Name;
         }
 
         public static string[] QueryGrade()

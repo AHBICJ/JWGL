@@ -169,10 +169,12 @@ namespace JWGL.DAL
 					BinaryFormatter bf = new BinaryFormatter();
 					teachers = new TeacherDAL();
                     teachers.TID = 1;
+                    teachers.currentYear = 2010;
                     bf.Serialize(fs,teachers);
 				}
 			}
             Teacher.teacherID = teachers.TID;
+            Teacher.currentYear = teachers.currentYear;
             return teachers;
 		}
 
@@ -183,6 +185,7 @@ namespace JWGL.DAL
 		public static void SaveTeachers(TeacherDAL teachers)
 		{
             teachers.TID = Teacher.teacherID;
+            teachers.currentYear = Teacher.currentYear;
             using (FileStream fs = new FileStream(teacherDocPath,FileMode.Create,FileAccess.Write))
 			{
 				BinaryFormatter bf = new BinaryFormatter();

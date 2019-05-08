@@ -9,5 +9,6 @@ namespace JWGL.DAL
 	[Serializable]
 	public class TeacherDAL:BaseDAL	{
         public int TID;
+        public int currentYear = 2010;
     }
 }

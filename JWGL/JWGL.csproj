@@ -52,15 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JWGL.BLL\JWGL.BLL.csproj">
       <Project>{17421cd9-c7a3-484f-9e41-59a7214b9be7}</Project>
       <Name>JWGL.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JWGL.DAL\JWGL.DAL.csproj">
-      <Project>{120693ab-b82a-4e80-8058-ee9eff1c841a}</Project>
-      <Name>JWGL.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\JWGL.Model\JWGL.Model.csproj">
       <Project>{d7ef7a6d-cb86-48f2-a408-9b639072eb1b}</Project>
